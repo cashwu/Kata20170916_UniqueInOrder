@@ -32,6 +32,24 @@ namespace Kata20170916_UniqueInOrder
             UniqueInOrderShouldBe("AB", "AAB");
         }
 
+        [TestMethod]
+        public void Input_AAAABBBCCDAABBB_should_return_ABCDAB()
+        {
+            UniqueInOrderShouldBe("ABCDAB", "AAAABBBCCDAABBB");
+        }
+
+        [TestMethod]
+        public void Input_ABBCcAD_should_return_ABCcAD()
+        {
+            UniqueInOrderShouldBe("ABCcAD", "ABBCcAD");
+        }
+
+        [TestMethod]
+        public void Input_12233_should_return_123()
+        {
+            UniqueInOrderShouldBe("123", "12233");
+        }
+
         private static void UniqueInOrderShouldBe(string expected, string iterable)
         {
             var kata = new Kata();
