@@ -51,6 +51,12 @@ namespace Kata20170916_UniqueInOrder
         }
 
         [TestMethod]
+        public void Input_empty_should_return_empty()
+        {
+            UniqueInOrderShouldBe("", "");
+        }
+
+        [TestMethod]
         public void Input_1_1_should_return_1()
         {
             UniqueInOrderShouldBe(new List<int> { 1 }, new List<int>{ 1, 1 });
@@ -69,6 +75,11 @@ namespace Kata20170916_UniqueInOrder
         public IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable) 
         {
             var list = iterable.ToList();
+
+            if (list.Count == 0)
+            {
+                return list;
+            }
 
             var result = new List<T>
             {
