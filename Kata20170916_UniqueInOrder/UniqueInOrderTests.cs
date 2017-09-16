@@ -20,6 +20,12 @@ namespace Kata20170916_UniqueInOrder
             UniqueInOrderShouldBe("A", "AA");
         }
 
+        [TestMethod]
+        public void Input_AAA_should_return_A()
+        {
+            UniqueInOrderShouldBe("A", "AAA");
+        }
+
         private static void UniqueInOrderShouldBe(string expected, string iterable)
         {
             var kata = new Kata();
