@@ -26,6 +26,12 @@ namespace Kata20170916_UniqueInOrder
             UniqueInOrderShouldBe("A", "AAA");
         }
 
+        [TestMethod]
+        public void Input_AAB_should_return_AB()
+        {
+            UniqueInOrderShouldBe("AB", "AAB");
+        }
+
         private static void UniqueInOrderShouldBe(string expected, string iterable)
         {
             var kata = new Kata();
@@ -42,10 +48,20 @@ namespace Kata20170916_UniqueInOrder
             {
                 var list = iterable.Cast<char>().ToList();
 
-                if (list[0] == list[1])
+                var result = new List<char>
                 {
-                    return list[0].ToString().Cast<T>();
+                    list[0]
+                };
+
+                for (var i = 1; i < list.Count; i++)
+                {
+                    if (list[i] != list[i - 1])
+                    {
+                        result.Add(list[i]);
+                    }
                 }
+
+                return string.Concat(result).Cast<T>();
             }
             
             return iterable;
