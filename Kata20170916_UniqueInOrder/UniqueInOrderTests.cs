@@ -88,6 +88,7 @@ namespace Kata20170916_UniqueInOrder
 
             for (var i = 1; i < list.Count; i++)
             {
+                //http://www.johncleary.net/2013/06/c-how-to-use-operators-method-using-generics/
                 dynamic a = list[i], b = list[i - 1];
 
                 if (a != b)
