@@ -50,39 +50,49 @@ namespace Kata20170916_UniqueInOrder
             UniqueInOrderShouldBe("123", "12233");
         }
 
-        private static void UniqueInOrderShouldBe(string expected, string iterable)
+        [TestMethod]
+        public void Input_1_1_should_return_1()
+        {
+            UniqueInOrderShouldBe(new List<int> { 1 }, new List<int>{ 1, 1 });
+        }
+
+        private static void UniqueInOrderShouldBe<T>(IEnumerable<T> expected, IEnumerable<T> iterable)
         {
             var kata = new Kata();
             var actual = kata.UniqueInOrder(iterable);
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected.ToList(), actual.ToList());
         }
     }
 
     public class Kata
     {
-        public IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable)
+        public IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable) 
         {
-            if (typeof(char) == typeof(T))
+            var list = iterable.ToList();
+
+            var result = new List<T>
             {
-                var list = iterable.Cast<char>().ToList();
+                list[0]
+            };
 
-                var result = new List<char>
-                {
-                    list[0]
-                };
+            for (var i = 1; i < list.Count; i++)
+            {
+                dynamic a = list[i], b = list[i - 1];
 
-                for (var i = 1; i < list.Count; i++)
+                if (a != b)
                 {
-                    if (list[i] != list[i - 1])
-                    {
-                        result.Add(list[i]);
-                    }
+                    result.Add(list[i]);
                 }
+                
+                //var comparer = Comparer<T>.Default;
 
-                return string.Concat(result).Cast<T>();
+                //if (comparer.Compare(list[i], list[i - 1]) != 0)
+                //{
+                //    result.Add(list[i]);
+                //}
             }
-            
-            return iterable;
+
+            return result;
         }
     }
 }
